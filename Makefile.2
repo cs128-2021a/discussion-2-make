@@ -1,0 +1,7 @@
+INCLUDES=-I src/ -I includes/
+CXXFLAGS=-std=c++20 -stdlib=libc++ -lc++abi -g -O0 \
+	-Wall -Wextra -Werror -pedantic $(INCLUDES)
+CXX=clang++
+
+bin/main.out: src/main.cc
+	$(CXX) $(CXXFLAGS) src/main.cc -o bin/main.out

@@ -1,0 +1,16 @@
+INCLUDES=-I src/ -I includes/
+CXXFLAGS=-std=c++20 -stdlib=libc++ -lc++abi -g -O0 \
+	-Wall -Wextra -Werror -pedantic $(INCLUDES)
+CXX=clang++
+
+test: bin/tests.out
+	bin/tests.out
+
+bin/main.out: src/main.cc
+	$(CXX) $(CXXFLAGS) src/main.cc -o bin/main.out
+
+bin/tests.out: tests/tests.cc src/point.cc
+	$(CXX) $(CXXFLAGS) tests/tests.cc src/point.cc -o bin/tests.out
+
+.PHONY: test
+.DEFAULT_GOAL := test
