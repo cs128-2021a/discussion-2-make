@@ -17,6 +17,10 @@ bin/main.out: src/main.cc src/point.cc
 bin/tests.out: tests/tests.cc src/point.cc
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
+compile_commands.json: Makefile
+	$(CXX) -MJ $@ $(CXXFLAGS) tests/tests.cc src/point.cc -o bin/tests.out
+	# $(CXX) -MJ $@ $(CXXFLAGS) src/main.cc -o bin/main.out
+
 src/%.cc: includes/%.h
 	touch $@
 
